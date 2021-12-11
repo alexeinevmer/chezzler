@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Menu/Settings.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Menu/Play.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Menu/Quit.png" type="Texture" id=3]
+[ext_resource path="res://src/MainMenu.gd" type="Script" id=4]
+[ext_resource path="res://src/PLAY.gd" type="Script" id=5]
+[ext_resource path="res://src/Level Select Grid.gd" type="Script" id=6]
+[ext_resource path="res://src/TypeFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/QUIT.gd" type="Script" id=8]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+"
+
+[node name="Main Menu" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.117647, 0.247059, 0.486275, 1 )
+polygon = PoolVector2Array( 0, 0, 1080, 0, 1080, 1920, 0, 1920 )
+
+[node name="MainMenu" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.05945
+margin_right = 1092.0
+margin_bottom = 1921.06
+custom_constants/margin_right = 206
+custom_constants/margin_top = 367
+custom_constants/margin_left = 206
+custom_constants/margin_bottom = 367
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+margin_left = 206.0
+margin_top = 367.0
+margin_right = 886.0
+margin_bottom = 1553.0
+custom_constants/separation = 122
+
+[node name="PLAY" type="Button" parent="MainMenu/VBoxContainer"]
+margin_right = 680.0
+margin_bottom = 252.0
+icon = ExtResource( 2 )
+script = ExtResource( 5 )
+
+[node name="SETTINGS" type="Button" parent="MainMenu/VBoxContainer"]
+margin_top = 374.0
+margin_right = 680.0
+margin_bottom = 624.0
+icon = ExtResource( 1 )
+script = SubResource( 1 )
+
+[node name="QUIT" type="Button" parent="MainMenu/VBoxContainer"]
+margin_top = 746.0
+margin_right = 680.0
+margin_bottom = 996.0
+icon = ExtResource( 3 )
+script = ExtResource( 8 )
+
+[node name="Popup" type="Popup" parent="."]
+margin_right = 1080.0
+margin_bottom = 1920.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.117647, 0.247059, 0.486275, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 200.0
+margin_right = -50.0
+margin_bottom = -50.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="VBoxContainer" parent="Popup/MarginContainer"]
+margin_right = 980.0
+margin_bottom = 1670.0
+custom_constants/separation = 100
+
+[node name="LevelSelectText" type="Label" parent="Popup/MarginContainer/HSeparator"]
+margin_right = 980.0
+margin_bottom = 84.0
+custom_fonts/font = ExtResource( 7 )
+text = "Select Level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level Select Grid" type="GridContainer" parent="Popup/MarginContainer/HSeparator"]
+margin_top = 184.0
+margin_right = 980.0
+margin_bottom = 1670.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 10
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/PLAY" to="MainMenu" method="_on_PLAY_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/QUIT" to="MainMenu/VBoxContainer/QUIT" method="_on_QUIT_pressed"]

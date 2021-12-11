@@ -1,0 +1,193 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/LevelText.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Akashi/akashi.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/TileSet/Base/GoalOutline.png" type="Texture" id=3]
+[ext_resource path="res://Assets/TileSet/Base/MainPiece.png" type="Texture" id=5]
+[ext_resource path="res://src/GUI.gd" type="Script" id=6]
+[ext_resource path="res://src/Player.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.576471, 0.576471, 0.576471, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[node name="GameBoard" type="Node2D"]
+
+[node name="GUI" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.0
+margin_right = 1080.0
+margin_bottom = 1918.0
+size_flags_vertical = 2
+custom_constants/margin_right = 100
+custom_constants/margin_top = 100
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 100
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="GUI"]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 980.0
+margin_bottom = 1820.0
+rect_min_size = Vector2( 108, 192 )
+color = Color( 0.117647, 0.247059, 0.486275, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Seperator1" type="VBoxContainer" parent="GUI/Background"]
+margin_right = 880.0
+margin_bottom = 1240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopTools" type="VBoxContainer" parent="GUI/Background/Seperator1"]
+margin_right = 880.0
+margin_bottom = 57.0
+
+[node name="Top Bar" type="HBoxContainer" parent="GUI/Background/Seperator1/TopTools"]
+margin_right = 880.0
+margin_bottom = 57.0
+
+[node name="Level Info" type="HBoxContainer" parent="GUI/Background/Seperator1/TopTools/Top Bar"]
+margin_right = 180.0
+margin_bottom = 57.0
+
+[node name="Level" type="TextureRect" parent="GUI/Background/Seperator1/TopTools/Top Bar/Level Info"]
+margin_right = 159.0
+margin_bottom = 57.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level Number" type="Label" parent="GUI/Background/Seperator1/TopTools/Top Bar/Level Info"]
+margin_left = 163.0
+margin_right = 180.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MovesCounter" type="HBoxContainer" parent="GUI/Background/Seperator1/TopTools/Top Bar"]
+margin_left = 184.0
+margin_right = 417.0
+margin_bottom = 57.0
+
+[node name="Moves" type="Label" parent="GUI/Background/Seperator1/TopTools/Top Bar/MovesCounter"]
+margin_right = 195.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Moves:"
+align = 1
+valign = 1
+
+[node name="Move Number" type="Label" parent="GUI/Background/Seperator1/TopTools/Top Bar/MovesCounter"]
+margin_left = 199.0
+margin_right = 233.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Return" type="Label" parent="GUI/Background/Seperator1/TopTools/Top Bar"]
+margin_left = 421.0
+margin_right = 596.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Return"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="GUI/Background/Seperator1/TopTools/Top Bar/Return"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameboardBackground" type="ColorRect" parent="GUI/Background/Seperator1"]
+margin_top = 61.0
+margin_right = 880.0
+margin_bottom = 1240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.396078, 0.368627, 0.368627, 1 )
+
+[node name="GameBoard" type="GridContainer" parent="GUI/Background/Seperator1/GameboardBackground"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = 400.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoalOutline" type="Sprite" parent="GUI/Background/Seperator1/GameboardBackground"]
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 488.538, 657.334 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 5 )
+script = ExtResource( 8 )
+
+[connection signal="gui_input" from="GUI/Background/Seperator1/GameboardBackground/GameBoard" to="GUI" method="_on_GameBoard_gui_input"]

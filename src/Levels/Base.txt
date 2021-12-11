@@ -1,0 +1,12 @@
+#PAR
+#BOARDSIZE
+#PIECE:POSX,POSY,MOVEX,MOVEY,MOVEX,MOVEY....;ATTACKX,ATTACKY,ATTACKX,ATTACKY
+.
+.
+.
+
+
+#m : main piece
+#g : goal position
+#p : pawn type piece
+#b : bishop type piece
